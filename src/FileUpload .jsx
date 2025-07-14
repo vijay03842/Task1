@@ -14,8 +14,9 @@ const FileUpload = () => {
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
-
-      const values = line.split(/,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+      
+      const values=line.split(",")
+      console.log(values);
       const id = values[0];
       const subject = values[4];
       const duedate = values[6]?.replace(/"/g, "") || "N/A";;

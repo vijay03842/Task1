@@ -23,7 +23,7 @@ const FileUpload = () => {
       const done = values[8]||"0";
       const status = values[9];
 
-      const formatted = `id:#${id} -> subject:${subject} -> duedate:${duedate} -> Ai:${Ai}% -> Done:${done}% -> Status=${status}`;
+      const formatted = `#${id} -> ${subject} -> ${duedate} -> Ai:${Ai}% ai used -> Done:${done}%done -> Status=${status}`;
       tasks.push(formatted);
     }
 

@@ -14,12 +14,12 @@ const FileUpload = () => {
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
       if (!line) continue;
-      
+
       const values=line.split(",")
       console.log(values);
       const id = values[0];
       const subject = values[4];
-      const duedate = values[6]?.replace(/"/g, "") || "N/A";;
+      const duedate = values[6]?.replace('') || "N/A";;
       const Ai = values[7] ||"0";
       const done = values[8]||"0";
       const status = values[9];
@@ -36,24 +36,68 @@ const FileUpload = () => {
     alert("Task list copied!");
   };
 
-  return (
-    <div style={{ maxWidth: "600px",maxHeight:"600px", margin: "20px auto", padding: "20px" }}>
-      <h2>CSV file Extractor</h2>
+   return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      minHeight: "100vh",
+      minWidth:"100vw",
+      backgroundColor: "#f8f9fa",
+      padding: "20px",
+    }}>
+      <div style={{
+        background: "#ffffff",
+        padding: "20px",
+        borderRadius: "12px",
+        maxWidth: "600px",
+        width: "100%"
+      }}>
+        <h2 style={{ textAlign: "center", marginBottom: "5px", color: "#333" }}>
+          📄 CSV file Extractor
+        </h2>
 
-      <input type="file" accept=".csv,.txt" onChange={handleFileChange} />
+        <input
+          type="file"
+          accept=".csv,.txt"
+          onChange={handleFileChange}
+          style={{
+            display: "block",
+            margin: "0 auto 10px auto",
+            padding: "10px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            cursor: "pointer",
+          }}
+        />
 
-      <textarea
-        style={{ width: "600px", height: "500px", marginTop: "10px", }}
-        value={taskList.join("\n")}
-        readOnly
-      />      {taskList.length > 0 && (
-        <button
-          onClick={copyToClipboard}
-          className="btn btn-primary"
-        >
-          Copy Task List
-        </button>
-      )}
+        <textarea
+          value={taskList.join("\n")}
+          readOnly
+          style={{
+            width: "100%",
+            minHeight: "70vh",
+            padding: "10px",
+            marginRight:"20px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            background: "#f1f3f5",
+            color:"black",
+            marginBottom:"1px",
+          }}
+        />
+
+        {taskList.length > 0 && (
+          <button
+            onClick={copyToClipboard}
+            className="btn btn-primary float-end"
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = "#0056b3"}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = "#007bff"}
+          >
+            📋 Copy
+          </button>
+        )}
+      </div>
     </div>
   );
 };
